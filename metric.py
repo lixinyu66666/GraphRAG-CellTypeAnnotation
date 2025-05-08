@@ -3,15 +3,25 @@ import nltk
 from nltk.translate.bleu_score import sentence_bleu, SmoothingFunction
 from nltk.util import ngrams
 import inflect
+from nltk.data import find
 
-nltk.download('punkt')
+# nltk.download('punkt')
+
+# try:
+#     find('tokenizers/punkt_tab')
+# except LookupError:
+#     nltk.download('punkt', quiet=True)
+    
 p = inflect.engine()
 
 def clean_and_normalize(pred):
     """
     Clean and normalize the predicted text.
     """
+    if not isinstance(pred, str) or not pred.strip():
 
+        return ""
+    
     match = re.match(r"^[^\n,\.]*", pred.strip())
     if match:
         pred_clean = match.group().strip().lower()

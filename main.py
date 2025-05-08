@@ -1,14 +1,14 @@
-import metric
 import pipeline
 import load_data
 import pandas as pd
 
 if __name__ == "__main__":
 
-    df_results = pd.read_csv("GraphRAG-CellTypeAnnotaion/results/results.csv")
+    df_results = pd.read_csv("results/results_init.csv")
+    # df_results = pd.read_csv("results/results_1.csv")
 
     df_Azimuth_PBMC = load_data.load_benchmark_specified_dataset_tissue(
-        filepath="GraphRAG-CellTypeAnnotaion/datasets/dataset_init.csv",
+        filepath="datasets/dataset_init.csv",
         dataset="Azimuth",
         tissue="PBMC"
     )
@@ -20,12 +20,18 @@ if __name__ == "__main__":
         model_name="deepseek-reasoner"
     )
 
-    df_results.to_csv("GraphRAG-CellTypeAnnotaion/results/results_1.csv", index=False)
+    df_results.to_csv("results/results_1.csv", index=False)
+
+    df_Azimuth_PBMC_results = load_data.load_benchmark_specified_dataset_tissue(
+        filepath="results/results_1.csv",
+        dataset="Azimuth",
+        tissue="PBMC"
+    )
 
     df_results = pipeline.get_bleu_scores(
-        df=df_Azimuth_PBMC,
+        df=df_Azimuth_PBMC_results,
         method="DeepSeek-R1",
         df_full=df_results
     )
 
-    df_results.to_csv("GraphRAG-CellTypeAnnotaion/results/results_2.csv", index=False)
+    df_results.to_csv("results/results_2.csv", index=False)
