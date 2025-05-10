@@ -1,37 +1,15 @@
-import pipeline
-import load_data
-import pandas as pd
+from pipeline import run_pipeline
 
 if __name__ == "__main__":
 
-    df_results = pd.read_csv("results/results_init.csv")
-    # df_results = pd.read_csv("results/results_1.csv")
-
-    df_Azimuth_PBMC = load_data.load_benchmark_specified_dataset_tissue(
-        filepath="datasets/dataset_init.csv",
-        dataset="Azimuth",
-        tissue="PBMC"
-    )
-
-    df_results = pipeline.deepseek_annotation(
-        df_file=df_Azimuth_PBMC,
+    run_pipeline(
+        file_path="datasets/dataset_init.csv",
+        method="deepseek-r1-rag",
         species="human",
-        df_full=df_results,
-        model_name="deepseek-reasoner"
-    )
-
-    df_results.to_csv("results/results_1.csv", index=False)
-
-    df_Azimuth_PBMC_results = load_data.load_benchmark_specified_dataset_tissue(
-        filepath="results/results_1.csv",
         dataset="Azimuth",
-        tissue="PBMC"
+        tissue="PBMC",
+        default_rag_k=3,
+        weight=0.8,
+        init_result_path="results/results.csv",
+        save_path="results/results_temp.csv"
     )
-
-    df_results = pipeline.get_bleu_scores(
-        df=df_Azimuth_PBMC_results,
-        method="DeepSeek-R1",
-        df_full=df_results
-    )
-
-    df_results.to_csv("results/results_2.csv", index=False)

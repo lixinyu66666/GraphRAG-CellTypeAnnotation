@@ -48,11 +48,12 @@ env/
 *.log
 *.sql
 *.sqlite
+nohup.out
 
 # Mac
 .DS_Store
 
 # configuration files
-config.py
+# config.py
 
 
