@@ -59,7 +59,7 @@ def cell_type_annotation(df_file, species, df_full, method, default_rag_k=3) -> 
             _, response = call_with_filtered_kwargs(fn, **common_kwargs)
             pred = response.choices[0].message.content.strip()
 
-            parts = [p.strip() for p in pred.split(",", 1)]
+            parts = [p.strip() for p in pred.split("|", 1)]
             annotation = parts[0] if len(parts) >= 1 else pd.NA
             broadtype = parts[1] if len(parts) == 2 else pd.NA
 
@@ -75,11 +75,6 @@ def cell_type_annotation(df_file, species, df_full, method, default_rag_k=3) -> 
             mask &= (df_full[kc].astype(str) == str(row[kc]))
         df_full.loc[mask, ann_col] = annotation
         df_full.loc[mask, broad_col] = broadtype
-
-    data_ann = df_full.pop(ann_col)
-    data_broad = df_full.pop(broad_col)
-    df_full[ann_col] = data_ann
-    df_full[broad_col] = data_broad
 
     return df_full
 
