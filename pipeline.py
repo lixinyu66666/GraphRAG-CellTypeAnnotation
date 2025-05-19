@@ -120,9 +120,9 @@ def get_bleu_scores(df: pd.DataFrame, method: str, df_full: pd.DataFrame, weight
         logger.info(f"{prefix} Evaluating BLEU scores for: dataset={row['dataset']}, tissue={row['tissue']}, marker={row['marker']}, pred={pred_anno}, broad={pred_broad}")
 
         try:
-            score_anno = metric.evalute_bleu_score(refs_anno, pred_anno)
+            score_anno = metric.evaluate_bleu_score(refs_anno, pred_anno)
             if refs_broad and isinstance(pred_broad, str):
-                score_broad = metric.evalute_bleu_score(refs_broad, pred_broad)
+                score_broad = metric.evaluate_bleu_score(refs_broad, pred_broad)
             else:
                 score_broad = {"BLEU-1": 0.0, "BLEU-2": 0.0, "BLEU-avg": 0.0}
 
@@ -156,7 +156,7 @@ def run_pipeline(
         weight: float = 0.8,
         init_result_path: str = None,
         save_path: str = None
-        ) -> pd.DataFrame:
+        ):
     """
     Run the entire pipeline for cell type annotation and evaluation.
     Args:

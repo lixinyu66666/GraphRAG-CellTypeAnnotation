@@ -2,6 +2,8 @@ from method import (
     annotate_cell_type_with_deepseek,
     annotation_cell_type_with_deepseek_rag,
     annotation_cell_type_with_deepseek_kg_graph_rag,
+    annotation_cell_type_with_ollama,
+    annotation_cell_type_with_ollama_kg_graph_rag,
 )
 
 ANNOTATION_METHODS = {
@@ -34,5 +36,15 @@ ANNOTATION_METHODS = {
         "func": annotation_cell_type_with_deepseek_kg_graph_rag,
         "model_name": "deepseek-chat",
         "prefix": "DeepSeek-V3-KG-Graph-RAG",
+    },
+    "llama3:70b": {
+        "func": annotation_cell_type_with_ollama,
+        "model_name": "llama3:70b",
+        "prefix": "Llama3:70b",
+    },
+    "llama3:70b-kg-graph-rag": {
+        "func": annotation_cell_type_with_ollama_kg_graph_rag,
+        "model_name": "llama3:70b",
+        "prefix": "Llama3:70b-KG-Graph-RAG",
     },
 }

@@ -1,9 +1,7 @@
 import re
 import nltk
 from nltk.translate.bleu_score import sentence_bleu, SmoothingFunction
-from nltk.util import ngrams
 import inflect
-from nltk.data import find
 
 # nltk.download('punkt')
 
@@ -45,7 +43,7 @@ def compute_bleu_scores(reference_list, prediction, weights):
 
     return sentence_bleu(references, prediction, weights=weights, smoothing_function=smoothie)
 
-def evalute_bleu_score(reference_synonyms, prediction):
+def evaluate_bleu_score(reference_synonyms, prediction):
     """
     Evaluate the BLEU score for the given reference synonyms and prediction.
     Args:
