@@ -5,7 +5,7 @@ from neo4j_graphrag.types import RawSearchResult
 import re
 from typing import Dict, Any, Optional
 
-class DeepSeekAdapter(LLMInterface):
+class LLMAdapter(LLMInterface):
     """
     Make the DeepSeek API compatible with the LLMInterface.
     """
