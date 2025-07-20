@@ -58,3 +58,6 @@ nohup.out
 test.py
 test.ipynb
 
+results/results_init_cleaned.csv
+results/results_new.csv
+results/results_nonCL.csv
