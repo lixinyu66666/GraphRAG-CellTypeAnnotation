@@ -211,6 +211,7 @@ Contributions are welcome! Please feel free to submit a Pull Request. For major 
 
 The following table shows the BLEU-avg-final scores for different models and methods across various datasets and tissues:
 
+<!--
 <style>
   .triple-line { border-collapse: collapse; }
   .triple-line thead tr:first-child th { border-top: 2px solid #fff; }
@@ -221,6 +222,7 @@ The following table shows the BLEU-avg-final scores for different models and met
   .triple-line tbody tr:last-child td { border-bottom: 2px solid #fff; }
   .triple-line th, .triple-line td { padding: 6px 10px; text-align: center; }
 </style>
+-->
 
 <table class="triple-line" style="font-size:0.8em;">
   <thead>
